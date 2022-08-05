@@ -1,28 +1,60 @@
 #include<iostream>
-#inlude<conio.h>
+#include<conio.h>
 #include<fstream>
+#include<string.h>
 using namespace std;
 class admin{
 };
 class customer
-{
-    void customerData()
-{
-	ifstream ifs;
-	ifs.open("Customer.txt");
-	int custNum = 0;
-	
-	while (!ifs.eof())
-	{
-		ifs >> cust[custNum].id;
-		ifs.ignore();
-		ifs.getline(cust[custNum].name,100,';');
-		ifs.getline(cust[custNum].phone,15,';');
-		ifs.getline(cust[custNum].ic,15,';');
-		ifs.getline(cust[custNum].address,1500);
-		custNum++;
-	}
-	
-	ifs.close();
-}
+{private:
+    char name[23];
+public:
+    void getinfo();
+    void showinfo();
+void art();
 };
+void customer::getinfo()
+{
+
+    cout<<" Enter the name: ";
+    cin>>name;
+}
+void customer::showinfo()
+{
+    cout<<"Name: "<<name<<endl;
+}
+
+void art()
+{
+
+	ifstream ifs ("art.txt");
+	string Lines = "";
+
+    if (ifs)
+    {
+		while (ifs.good ())
+		{
+	    	string TempLine;
+	    	getline (ifs , TempLine);
+	    	TempLine += "\n";
+
+	    	Lines += TempLine;
+		}
+
+	cout << Lines;
+
+
+	}
+	cout<<"\n\t  |\t\t\t\t\t\t\t";
+	ifs.close ();
+}
+
+int main()
+{
+
+    art();
+    customer a;
+    a.getinfo();
+    a.showinfo();
+    return 0;
+}
